@@ -42,7 +42,8 @@ function setTable(top5, probs) {
         let sym = document.getElementById('sym' + (i + 1))
         let prob = document.getElementById('prob' + (i + 1))
         sym.innerHTML = top5[i]
-	a[i]=top5[i]
+		a[i]=top5[i]
+		document.getElementById('b'+str(i)).innerText = str(a[i]);
         prob.innerHTML = Math.round(probs[i] * 100)
     }
     //create the pie 
@@ -252,7 +253,7 @@ function allowDrawing() {
 submit keywords to main.html
 */
 function submitkeys(){
-	window.location.href="test.html?keywords='"+a[0]+" "+a[1]+" "+a[2]+"'";
+	window.location.href="test.html?keywords='"+a[0]+"'";
 }
 
 /*
