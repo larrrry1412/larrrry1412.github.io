@@ -2,10 +2,13 @@
 <head>
 <meta charset="UTF-8" />
 <title>Sketcherd</title>
-
+<link href="css/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="css/bootsnav.css" rel="stylesheet" media="all">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootsnav.js"></script>
 <!-- bs4 css -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
-	
 <!-- css pie -->
 <link rel="stylesheet" href="pie.css">
 
@@ -32,24 +35,15 @@
 	
 	
 </head>
-
-<body>
+<body background="2d154c540923dd54ae802130dc09b3de9d8248fa.jpg" style="background-repeat:no-repeat"></body>
+<body>	
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
- 	<h1>Recognition</h1>
+ 	<h1>手绘图识别</h1>
 </nav>
-<div class="container-fluid"> 
-
-		<blockquote style="margin:30px;font-size:30px">
-			 <p>
-			 The CNN was trained to recognize 100 <a href='https://larrrry1412.github.io/sketcher/model/class_names.txt'>classes</a> using the quick draw <a href='https://github.com/googlecreativelab/quickdraw-dataset'> dataset</a>. 
-			 </p>
-			 <footer>Made by Larry&&Deng</footer>
-		</blockquote>
-	</div>
 
 <div class="row">
   <div class="col" style ='margin-left:100px;'>
-<h4 id ='status' >Loading Model... </h4>	  
+<h4 id ='status' >请等待模型加载... </h4>	  
 <canvas id="canvas" width="300" height="300" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
 <div class="btn-group" style = 'margin-top:40px; '>
 <input type="range" min="5" max="20" value="10" class="slider" id="myRange" style ='margin-top:20px;'>
@@ -84,11 +78,23 @@
       </li>
     </ul>
   </section>
-  <br><br><br><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-danger" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
+  <br><br><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" id="b1" class="btn btn-primary" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
+			<button type="button" id="b2" class="btn btn-primary" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
+			<button type="button" id="b3" class="btn btn-primary" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
+			<button type="button" id="b4" class="btn btn-primary" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
+			<button type="button" id="b5" class="btn btn-primary" onclick ="submitkeys()" style ='margin-left:10px;' >Submit</button>
 </div>
 </div>  
+<div class="container-fluid"> 
+
+		<blockquote style="margin:30px;font-size:30px">
+			 <p>
+			 我们使用了CNN来训练模型，用以识别100个 <a href='https://larrrry1412.github.io/recog/model2/class_names.txt'>类别</a> 采用quick raw 作为<a href='https://github.com/googlecreativelab/quickdraw-dataset'> 数据集</a>. 
+			 </p>
+		</blockquote>
+	</div>
 </body>
 <script src="pie.js"></script>
 <script>
