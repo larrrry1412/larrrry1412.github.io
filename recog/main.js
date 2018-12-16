@@ -242,7 +242,7 @@ allow drawing on canvas
 */
 function allowDrawing() {
     canvas.isDrawingMode = 1;
-    document.getElementById('status').innerHTML = 'Start Drawing!';
+    document.getElementById('status').innerHTML = '开始绘画吧!';
     $('button').prop('disabled', false);
     var slider = document.getElementById('myRange');
     slider.oninput = function() {
