@@ -253,7 +253,7 @@ function allowDrawing() {
 submit keywords to main.html
 */
 function submitkeys(){
-	window.location.href="test.html?key22words='"+a[1]+"'";
+	window.location.href="test.html?ke2words='"+a[0]+"'";
 }
 
 /*
