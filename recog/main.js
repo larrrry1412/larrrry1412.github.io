@@ -43,7 +43,7 @@ function setTable(top5, probs) {
         let prob = document.getElementById('prob' + (i + 1))
         sym.innerHTML = top5[i]
 	a[i]=top5[i]
-	document.getElementById('b1').value = str(a[i])
+
         prob.innerHTML = Math.round(probs[i] * 100)
     }
     //create the pie 
