@@ -254,19 +254,19 @@ function allowDrawing() {
 submit keywords to main.html
 */
 function submitkey1(){
-	window.location.href="http://localhost:8080/WEBWORK/main.jsp?keyword="+a[0];
+	window.location.href="http://localhost:8080/#/result?keyword="+a[0];
 }
 function submitkey2(){
-	window.location.href="test.html?keyword='"+a[1]+"'";
+	window.location.href="http://localhost:8080/#/result?keyword="+a[1];
 }
 function submitkey3(){
-	window.location.href="test.html?keyword='"+a[2]+"'";
+	window.location.href="http://localhost:8080/#/result?keyword="+a[2];
 }
 function submitkey4(){
-	window.location.href="test.html?keyword='"+a[3]+"'";
+	window.location.href="http://localhost:8080/#/result?keyword="+a[3];
 }
 function submitkey5(){
-	window.location.href="test.html?keyword='"+a[4]+"'";
+	window.location.href="http://localhost:8080/#/result?keyword="+a[4];
 }
 /*
 clear the canvs 
