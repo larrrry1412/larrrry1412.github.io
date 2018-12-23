@@ -254,7 +254,7 @@ function allowDrawing() {
 submit keywords to main.html
 */
 function submitkey1(){
-	window.location.href="test.html?keyword='"+a[0]+"'";
+	window.location.href="http://localhost:8080/WEBWORK/main.jsp?keyword="+a[0];
 }
 function submitkey2(){
 	window.location.href="test.html?keyword='"+a[1]+"'";
