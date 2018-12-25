@@ -22,7 +22,7 @@ anvil
 cloud
 candle
 beard
-house
+houses
 cup
 bench
 snake
@@ -90,7 +90,7 @@ traffic_light
 bird
 camera
 airplane
-cat
+cats
 hand
 eyeglasses
 triangle
