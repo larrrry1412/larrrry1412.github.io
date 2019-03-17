@@ -223,7 +223,7 @@ load the model
 async function start(cur_mode) {
     
     mode = cur_mode
-    
+    document.getElementById('status').innerHTML = 'za!';
     //load the model 
     model = await tf.loadModel('model2/model.json')
     
