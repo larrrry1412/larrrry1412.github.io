@@ -7,46 +7,6 @@ var a=[];
 var idx2word=[];
 var word2idx = new Array();
 
-
-
-/*
-get the image data 
-*/
-function getImageData() {
-        //get the minimum bounding box around the drawing 
-        const mbb = getMinBox()
-
-        //get image data according to dpi 
-        const dpi = window.devicePixelRatio
-        const imgData = canvas.contextContainer.getImageData(mbb.min.x * dpi, mbb.min.y * dpi,
-                                                      (mbb.max.x - mbb.min.x) * dpi, (mbb.max.y - mbb.min.y) * dpi);
-        return imgData
-    }
-
-/*
-get the prediction 
-*/
-function getFrame() {
-    //make sure we have at least two recorded coordinates 
-    if (coords.length >= 2) {
-
-        //get the image data from the canvas 
-        const imgData = getImageData()
-
-        //get the prediction 
-        const pred = model.predict(preprocess(imgData)).dataSync()
-
-        //find the top 5 predictions 
-        const indices = findIndicesOfMax(pred, 5)
-        const probs = findTopValues(pred, 5)
-        const names = getClassNames(indices)
-
-        //set the table 
-        setTable(names, probs)
-    }
-
-}
-
 /*
 get the the class names 
 */
@@ -57,11 +17,12 @@ function getClassNames(indices) {
     return outp
 }
 
+
 /*
-load the class names 
+load the wordsdict
 */
 async function loadDict() {
-    loc = 'model2/class_names.txt'
+    loc = 'e.txt'
     
     await $.ajax({
         url: loc,
@@ -70,44 +31,17 @@ async function loadDict() {
 }
 
 /*
-correct the class names by deleting '\n'
+correct the wordsdict by deleting '\n'
 */
 function success(data) {
     const lst = data.split(/\n/)
     for (var i = 0; i < lst.length - 1; i++) {
         let symbol = lst[i]
-        classNames[i] = symbol
+        word2idx[symbol] = i
+	idx2word[i] = symbol
     }
 }
 
-/*
-get indices of the top probs
-*/
-function findIndicesOfMax(inp, count) {
-    var outp = [];
-    for (var i = 0; i < inp.length; i++) {
-        outp.push(i); // add index to output array
-        if (outp.length > count) {
-            outp.sort(function(a, b) {
-                return inp[b] - inp[a];
-            }); // descending sort the output array
-            outp.pop(); // remove the last index (index of smallest element in output array)
-        }
-    }
-    return outp;
-}
-
-/*
-find the top 5 predictions
-*/
-function findTopValues(inp, count) {
-    var outp = [];
-    let indices = findIndicesOfMax(inp, count)
-    
-    for (var i = 0; i < indices.length; i++)
-        outp[i] = inp[indices[i]]
-    return outp
-}
 
 /*
 preprocess the data
@@ -134,7 +68,7 @@ async function start() {
     
     //load the model 
     modelIncep = await tf.loadModel('modelnew/model.json')
-	modelstyle = await tf.loadModel('modelstyle/model.json')
+    modelstyle = await tf.loadModel('modelstyle/model.json')
     
     
     //load the wordsdict
@@ -161,5 +95,23 @@ function uploadImg(file,imgNum){
 		}
 		reader.readAsDataURL(file.files[0]); 
 	}
+	var pred = modelIncep.predict(preprocess(img))
+	
 
+	start_word = ["start"]
+	e = [pred]
+	zerok = np.zeros(shape=(33,2048))
+	e = np.append(e, zerok, axis = 0)
+	while True:
+		par_caps = [word2idx[i] for i in start_word]
+		par_caps = sequence.pad_sequences([par_caps], maxlen=max_len, padding='post')
+
+		preds = modelstyle.predict([np.array([e]),np.array([[1,0]]), np.array(par_caps)])
+		word_pred = idx2word[np.argmax(preds[0])]
+		start_word.append(word_pred)
+
+		if word_pred == "end" or len(start_word) > max_len:
+			break
+
+	var caption = start_word[1:-1]
 }
