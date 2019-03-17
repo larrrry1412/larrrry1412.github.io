@@ -67,9 +67,10 @@ load the model
 async function start() {
     
     //load the model 
+    document.getElementById('status').innerHTML = 'za!';
     modelIncep = await tf.loadModel('modelnew/model.json')
     //modelstyle = await tf.loadModel('modelstyle/model.json')
-    
+    document.getElementById('status').innerHTML = '开始绘画吧!';
     
     //load the wordsdict
     //await loadDict()
