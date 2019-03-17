@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Recognition</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="css/bootsnav.css" rel="stylesheet" media="all">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootsnav.js"></script>
+<!-- bs4 css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+<!-- css pie -->
+<link rel="stylesheet" href="pie.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<!-- TensorFlow.js script -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+<!-- canvas script -->
+<script src="fabric.js"></script>
+<!-- main script -->
+<script src = "main.js" > </script>
+<!-- main css -->
+<link rel = "stylesheet" href="main.css" > 
+	
+	
+</head>
+<!-- <body background="2d154c540923dd54ae802130dc09b3de9d8248fa.jpg" style="background-repeat:no-repeat"></body>  -->
+<body>	
+
+
+
+<div class="row" ">
+  <div class="col" style ='margin-left:100px'>
+    <h4 id ='status' >请等待模型加载... </h4>	  
+
+      
+      <div id="preview" >
+        <img src="" alt="" id="imghead5" height="200" width="200" style="margin: 20px" />
+      </div>
+
+      <div class="yanzRight" style="background-color:yellow;margin: 20px">
+        <input name="evidence" onchange="uploadImg(this,'preview')" type="file"/>
+        <span class="dui" id="imgOrder_dui" style="display: none;"></span>
+      </div>
+
+
+
+  </div>
+</div>  
+</body>
+<script src="pie.js"></script>
+<script>
+	console.log('starting');
+	start('en')
+</script>
+</html>
