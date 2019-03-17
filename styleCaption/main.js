@@ -64,7 +64,7 @@ function preprocess(imgData) {
 /*
 load the model
 */
-async function start() {
+async function start(mode) {
     
     //load the model 
     document.getElementById('status').innerHTML = 'za!';
