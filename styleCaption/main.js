@@ -68,11 +68,11 @@ async function start() {
     
     //load the model 
     modelIncep = await tf.loadModel('modelnew/model.json')
-    modelstyle = await tf.loadModel('modelstyle/model.json')
+    //modelstyle = await tf.loadModel('modelstyle/model.json')
     
     
     //load the wordsdict
-    await loadDict()
+    //await loadDict()
 }
 
 
@@ -96,7 +96,7 @@ function uploadImg(file,imgNum){
 		reader.readAsDataURL(file.files[0]); 
 	}
 	var pred = modelIncep.predict(preprocess(img))
-	
+	document.getElementById("test1").innerHTML="pred";
 
 	start_word = ["start"]
 	e = [pred]
