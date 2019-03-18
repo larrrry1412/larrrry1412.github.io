@@ -7,15 +7,6 @@ var a=[];
 var idx2word=[];
 var word2idx = new Array();
 var data;
-/*
-get the the class names 
-*/
-function getClassNames(indices) {
-    var outp = []
-    for (var i = 0; i < indices.length; i++)
-        outp[i] = classNames[indices[i]]
-    return outp
-}
 
 
 /*
@@ -82,19 +73,20 @@ async function start(mode) {
         var tensor = tf.fromPixels(myCanvas);
 		
         const batch = tensor.flatten();
-		const batched2=batch.asType('float32');
-		const subed=tf.scalar(0.5);
-		const xed=tf.scalar(2.0);
-		const offset = tf.scalar(255.0);	
-		const c1=batched2.div(offset);
-		console.log(c1);
-		const c2=c1.sub(subed);
-		const c3=c2.mul(xed);
-		console.log("hj");
-		c4 = c3.expandDims(0);
+	const batched2=batch.asType('float32');
+	const subed=tf.scalar(0.5);
+	const xed=tf.scalar(2.0);
+	const offset = tf.scalar(255.0);	
+	const c1=batched2.div(offset);
+	const c2=c1.sub(subed);
+	const c3=c2.mul(xed);
+	console.log("hj");
+	data = c3.expandDims(0);
          
-         console.log(c4);
-
+        console.log(data);
+	var s=modelIncep.predict(image);
+	var temp_enc = s.reshape([2048]);
+	console.log(data);
     }
     //提交按钮
     function test() {
