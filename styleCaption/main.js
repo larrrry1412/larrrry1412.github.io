@@ -72,7 +72,6 @@ async function start(mode) {
         //tensorflow 预处理部分 
         var tensor = tf.fromPixels(myCanvas);
 		
-        const batch = tensor.flatten();
 	const batched2=batch.asType('float32');
 	const subed=tf.scalar(0.5);
 	const xed=tf.scalar(2.0);
