@@ -84,7 +84,7 @@ async function start(mode) {
 	data = c3.expandDims(0);
          
         console.log(data);
-	var s=modelIncep.predict(image);
+	var s=modelIncep.predict(data);
 	console.log(s);
 	var temp_enc = s.reshape([2048]);
 	console.log(temp_enc);
