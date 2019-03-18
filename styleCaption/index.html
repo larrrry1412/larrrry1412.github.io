@@ -2,12 +2,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Recognition</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="all">
-<link href="css/bootsnav.css" rel="stylesheet" media="all">
 <!-- bs4 css -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
-<!-- css pie -->
-<link rel="stylesheet" href="pie.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Popper JS -->
@@ -15,11 +11,32 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <!-- TensorFlow.js script -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
 <!-- canvas script -->
 <script src="fabric.js"></script>
 <!-- main script -->
-<script src = "main.js" > </script>
+<script src="main.js"></script> 
+<script type="text/javascript">
+  function upload() { 
+  let file = document.querySelector('input[type=file]').files[0] // 获取选择的文件，这里是图片类型 
+  let reader = new FileReader() 
+    reader.readAsDataURL(file) //读取文件并将文件以URL的形式保存在resulr属性中 base64格式 
+    reader.onload = function(e) { // 文件读取完成时触发  
+      let result = e.target.result // base64格式图片地址  
+      var image = new Image() 
+      image.src = result // 设置image的地址为base64的地址  
+      image.onload = function(){  
+        var canvas = document.querySelector("#canvas");  
+        var context = canvas.getContext("2d");  
+        canvas.width = image.width; // 设置canvas的画布宽度为图片宽度  
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, image.width, image.height) // 在canvas上绘制图片  
+        let dataUrl = canvas.toDataURL('image/jpeg', 0.92) // 0.92为压缩比，可根据需要设置，设置过小会影响图片质量  
+                                  // dataUrl 为压缩后的图片资源，可将其上传到服务器  
+      }  
+    } 
+ }
+</script>
 <!-- main css -->
 <link rel = "stylesheet" href="main.css" > 
 	
@@ -30,27 +47,24 @@
 
 
 
-<div class="row" ">
+<div class="row">
   <div class="col" style ='margin-left:100px'>
     <h4 id ='status' >请等待模型加载.</h4>	  
-
-		  <a id="test1">dsdsad</a>
-      <div id="preview" >
-        <img src="" alt="" id="imghead5" height="299" width="299" style="margin: 20px" />
-      </div>
-
-      <div class="yanzRight" style="background-color:yellow;margin: 20px">
-        <input name="evidence" onchange="uploadImg(this,'preview')" type="file"/>
-        <span class="dui" id="imgOrder_dui" style="display: none;"></span>
-      </div>
-
-
+      <input type="file" id="myfile" onchange="changeFile()" />
+      <canvas id="myCanvas" width="299" height="299" style="border:1px solid #d3d3d3;"></canvas>
+      <button onclick="test()">提交</button>
 
   </div>
 </div>  
 </body>
+
+
 <script>
-	console.log('starting');
-	start('en')
+    
 </script>
+<script>
+  console.log('starting');
+  start('en')
+</script>
+    
 </html>

@@ -6,7 +6,7 @@ var modelstyle;
 var a=[];
 var idx2word=[];
 var word2idx = new Array();
-
+var data;
 /*
 get the the class names 
 */
@@ -30,6 +30,9 @@ async function loadDict() {
     }).done(success);
 }
 
+
+
+
 /*
 correct the wordsdict by deleting '\n'
 */
@@ -44,31 +47,12 @@ function success(data) {
 
 
 /*
-preprocess the data
-*/
-function preprocess(imgData) {
-    return tf.tidy(() => {
-        //convert to a tensor 
-        let tensor = tf.fromPixels(imgData, numChannels = 1)
-        
-        //normalize 
-        const offset = tf.scalar(255.0);
-        const normalized = tf.scalar(1.0).sub(tensor.div(offset));
-
-        //add a dimension to get a batch shape 
-        const batched = normalized.expandDims(0)
-        return batched
-    })
-}
-
-/*
 load the model
 */
 async function start(mode) {
-    document.getElementById("test1").innerHTML="pred wait";
     //load the model 
     document.getElementById('status').innerHTML = 'za!';
-    //modelIncep = await tf.loadModel('modelnew/model.json')
+    modelIncep = await tf.loadModel('modelnew/model.json')
     //modelstyle = await tf.loadModel('modelstyle/model.json')
     document.getElementById('status').innerHTML = '开始绘画吧!';
     
@@ -77,42 +61,84 @@ async function start(mode) {
 }
 
 
-function uploadImg(file,imgNum){
-   var widthImg = 299; //显示图片的width
-   var heightImg = 299; //显示图片的height
-   var div = document.getElementById(imgNum);
-   if (file.files && file.files[0]){
-        div.innerHTML ='<img id="upImg">'; //生成图片
-        img = document.getElementById('upImg'); //获得用户上传的图片节点
-        img.onload = function(){
-			img.width = widthImg;
-			img.height = heightImg;
-		}
-		var reader = new FileReader(); //判断图片是否加载完毕	
-		reader.onload = function(evt){
-			if(reader.readyState === 2){ //加载完毕后赋值
-				img.src = evt.target.result;
-			}
-		}
-		reader.readAsDataURL(file.files[0]); 
-	}
-	var pred = modelIncep.predict(preprocess(img))
-	document.getElementById("test1").innerHTML="pred";
+//选择图片后
+    function changeFile() {
+        createURLImg(myfile.files[0]);
+    }
 
-	start_word = ["start"]
-	e = [pred]
-	zerok = np.zeros(shape=(33,2048))
-	e = np.append(e, zerok, axis = 0)
-	while True:
-		par_caps = [word2idx[i] for i in start_word]
-		par_caps = sequence.pad_sequences([par_caps], maxlen=max_len, padding='post')
+    //加载入canvas
+    function createURLImg(file,callback) {
+        var pen=myCanvas.getContext("2d");
+        var imgUrl=URL.createObjectURL(file);
+        var image=new Image();
+        image.src=imgUrl;
+        image.onload=function (ev) {
+            pen.drawImage(image,0,0,299,299);
+            if(callback) callback();
+            URL.revokeObjectURL(imgUrl);
+        }
 
-		preds = modelstyle.predict([np.array([e]),np.array([[1,0]]), np.array(par_caps)])
-		word_pred = idx2word[np.argmax(preds[0])]
-		start_word.append(word_pred)
+        //tensorflow 预处理部分 
+        var tensor = tf.fromPixels(myCanvas);
+		
+        const batch = tensor.flatten();
+		const batched2=batch.asType('float32');
+		const subed=tf.scalar(0.5);
+		const xed=tf.scalar(2.0);
+		const offset = tf.scalar(255.0);	
+		const c1=batched2.div(offset);
+		console.log(c1);
+		const c2=c1.sub(subed);
+		const c3=c2.mul(xed);
+		console.log("hj");
+		c4 = c3.expandDims(0);
+         
+         console.log(c4);
 
-		if word_pred == "end" or len(start_word) > max_len:
-			break
+    }
+    //提交按钮
+    function test() {
+        myCanvas.toBlob(function (result) {
+            var form=new FormData();
+            form.append("xxx",result);
+            ajax(form);
+        })
+    }
+    
+    function biafenb(r) {
+        if(!pen) pen=myCanvas.getContext("2d");
+        pen.save();
+        pen.globalAlpha=0.3;
+        pen.fillRect(0,(1-r)*200,299,299);
+        pen.globalAlpha=1;
+        pen.fillStyle = "white";
+        pen.font = "20px 微软雅黑";
+        pen.textAlign='center';
+        pen.fillText(Math.round(r*100)+"%",100,100);
+        pen.restore();
+    }
 
-	var caption = start_word[1:-1]
-}
+    function ajax(formData) {
+        $.ajax({
+            url:"/bbbbb",
+            type:"post",
+            Accept:"html/text;chatset=utf-8",
+            contentType:false,
+            data:formData,
+            processData:false,
+            xhr: function () {
+                var myXhr = $.ajaxSettings.xhr();
+                myXhr.upload.onprogress=function (ev) {
+                    pen.clearRect(0,0,299,299);
+                    createURLImg(myfile.files[0],function () {
+                        biafenb(ev.loaded/ev.total);
+                    })
+                }
+                return myXhr;
+            }, success: function (data) {
+                console.log("上传成功!!!!");
+            }, error: function () {
+                console.log("上传失败！");
+            }
+        })
+    }
