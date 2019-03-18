@@ -44,7 +44,7 @@ async function start(mode) {
     //load the model 
     document.getElementById('status').innerHTML = 'za!';
     modelIncep = await tf.loadModel('modelnew/model.json')
-    modelstyle = await tf.loadModel('modelstyle/model.json')
+    //modelstyle = await tf.loadModel('modelstyle/model.json')
     document.getElementById('status').innerHTML = '开始绘画吧!';
     
     //load the wordsdict
@@ -85,8 +85,9 @@ async function start(mode) {
          
         console.log(data);
 	var s=modelIncep.predict(image);
+	console.log(s);
 	var temp_enc = s.reshape([2048]);
-	console.log(data);
+	console.log(temp_enc);
     }
     //提交按钮
     function test() {
