@@ -42,13 +42,15 @@ load the model
 */
 async function start(mode) {
     //load the model 
-    document.getElementById('status').innerHTML = 'za!';
+    document.getElementById('status').innerHTML = 'wait!';
     modelIncep = await tf.loadModel('modelnew/model.json')
-    //modelstyle = await tf.loadModel('modelstyle/model.json')
-    document.getElementById('status').innerHTML = '开始绘画吧!';
+    document.getElementById('status').innerHTML = 'inception OK';
+    modelstyle = await tf.loadModel('modelstyle/model.json')
+    document.getElementById('status').innerHTML = 'style OK';
     
     //load the wordsdict
-    //await loadDict()
+    await loadDict()
+    document.getElementById('status').innerHTML = 'dict OK';
 }
 
 
@@ -82,11 +84,12 @@ async function start(mode) {
 	console.log("hj");
 	data = c3.expandDims(0);
          
-        console.log(data);
+        
 	var s=modelIncep.predict(data);
 	console.log(s);
-	var temp_enc = s.reshape([2048]);
-	console.log(temp_enc);
+	zerok = tf.zeros([33,2048],'float32')
+        e = tf.concat(e, zerok, 0)
+	console.log(e);
     }
     //提交按钮
     function test() {
