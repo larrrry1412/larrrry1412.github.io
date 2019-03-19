@@ -49,7 +49,7 @@ async function start(mode) {
     await loadDict()
     document.getElementById('status').innerHTML = 'dict OK';
     modelstyle = await tf.loadModel('modelstyled4/modelstyled4/model.json')
-    document.getElementById('status').innerHTML = 'style OK';
+    document.getElementById('status').innerHTML ='style OK';
     
     
 }
