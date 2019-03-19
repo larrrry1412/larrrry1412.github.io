@@ -90,7 +90,7 @@ async function start(mode) {
 	console.log(s);
 	var zerok = tf.zeros([33,2048],'float32')
 	s=tf.tensor(s);
-        var e = tf.concat(s, zerok, 0);
+        var e = tf.concat([s, zerok], 0);
 	e = e.expandDims(0);
 	console.log(e);
 	while (True)
