@@ -88,9 +88,39 @@ async function start(mode) {
         
 	var s=modelIncep.predict(data);
 	console.log(s);
-	zerok = tf.zeros([33,2048],'float32')
-        e = tf.concat(e, zerok, 0)
+	var zerok = tf.zeros([33,2048],'float32')
+        var e = tf.concat(s, zerok, 0)
+	e = e.expandDims(0);
 	console.log(e);
+	while (True)
+	{
+		var par_caps=[];
+		for (var i=0;i<start_word.length;i++)
+		{
+			par_caps.push(word2idx[i]);
+		}
+		for (var i=start_word.length;i<34;i++)
+		{
+			par_caps.push(0);
+		}
+
+		preds = decoder_model.predict([e,tf.tensor([[1,0]]), tf.tensor(par_caps)])
+		word_pred = idx2word[tf.argmax(preds[0])]
+		start_word.push(word_pred)
+
+		if ((word_pred == "end" )|| (len(start_word) > 34))
+		{
+			break;
+		}
+	}	
+	var sen=[];
+	for (var i=1;i<start_word.length-1;i++)
+		{
+			sen.push(start_word[i]);
+		}
+	console.log(sen);
+	document.getElementById('status').innerHTML = sen;
+
     }
     //提交按钮
     function test() {
