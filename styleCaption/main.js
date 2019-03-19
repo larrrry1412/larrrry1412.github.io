@@ -89,7 +89,8 @@ async function start(mode) {
 	var s=modelIncep.predict(data);
 	console.log(s);
 	var zerok = tf.zeros([33,2048],'float32')
-        var e = tf.concat(s, zerok, 0)
+	s=tf.tensor(s);
+        var e = tf.concat(s, zerok, 0);
 	e = e.expandDims(0);
 	console.log(e);
 	while (True)
