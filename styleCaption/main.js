@@ -38,11 +38,11 @@ function success(data) {
 	var s=word2idx['start']
 	var d=idx2word[s]
 	console.log(d)
-	s=parseInt()
+	s=parseInt(s)
 	console.log(s)
 	d=idx2word[s]
 	console.log(d)
-	var e=d.length
+	var e=d.length()
 	console.log(e)
 }
 
