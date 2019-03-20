@@ -31,12 +31,16 @@ function success(data) {
     const lst = data.split(/\n/)
     for (var i = 0; i < lst.length - 1; i++) {
         let symbol = lst[i]
+	symbol=symbol.trim()
         word2idx[symbol] = i
 	idx2word[i] = symbol
     }
 	var s=word2idx['start']
+	var d=idx2word[s]
+	console.log(d)
+	s=s.parseInt()
 	console.log(s)
-	var d=idx2word[43]
+	d=idx2word[s]
 	console.log(d)
 	var e=d.length
 	console.log(e)
