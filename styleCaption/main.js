@@ -38,7 +38,7 @@ function success(data) {
 	var s=word2idx['start']
 	var d=idx2word[s]
 	console.log(d)
-	s=s.parseInt()
+	s=parseInt()
 	console.log(s)
 	d=idx2word[s]
 	console.log(d)
