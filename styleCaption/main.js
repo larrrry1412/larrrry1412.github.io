@@ -34,6 +34,12 @@ function success(data) {
         word2idx[symbol] = i
 	idx2word[i] = symbol
     }
+	var s=word2idx['start']
+	console.log(s)
+	var d=idx2word[43]
+	console.log(d)
+	var e=d.length
+	console.log(e)
 }
 
 
@@ -43,13 +49,13 @@ load the model
 async function start(mode) {
     //load the model 
     document.getElementById('status').innerHTML = 'wait!';
-    modelIncep = await tf.loadModel('modelnew/model.json')
-    document.getElementById('status').innerHTML = 'inception OK';
+    //modelIncep = await tf.loadModel('modelnew/model.json')
+    //document.getElementById('status').innerHTML = 'inception OK';
     //load the wordsdict
     await loadDict()
     document.getElementById('status').innerHTML = 'dict OK';
-    modelstyle = await tf.loadModel('modelstyled4/modelstyled4/model.json')
-    document.getElementById('status').innerHTML ='style OK';
+    //modelstyle = await tf.loadModel('modelstyled4/modelstyled4/model.json')
+    //document.getElementById('status').innerHTML ='style OK';
     
     
 }
