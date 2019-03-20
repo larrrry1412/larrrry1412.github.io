@@ -45,13 +45,13 @@ load the model
 async function start(mode) {
     //load the model 
     document.getElementById('status').innerHTML = 'wait!';
-    //modelIncep = await tf.loadModel('modelnew/model.json')
-    //document.getElementById('status').innerHTML = 'inception OK';
+    modelIncep = await tf.loadModel('modelnew/model.json')
+    document.getElementById('status').innerHTML = 'inception OK';
     //load the wordsdict
     await loadDict()
     document.getElementById('status').innerHTML = 'dict OK';
-    //modelstyle = await tf.loadModel('modelstyled4/modelstyled4/model.json')
-    //document.getElementById('status').innerHTML ='style OK';
+    modelstyle = await tf.loadModel('modelstyled4/modelstyled4/model.json')
+    document.getElementById('status').innerHTML ='style OK';
     
     
 }
