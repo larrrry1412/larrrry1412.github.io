@@ -87,10 +87,11 @@ async function start(mode) {
          
         
 	var s=modelIncep.predict(data);
-	console.log(s);
+	
 	var zerok = tf.zeros([33,2048],'float32')
-	s=tf.tensor(s);
+	s=tf.tensor2d(s);
 	s=s.asType('float32');
+	console.log(s);
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
 	console.log(e);
