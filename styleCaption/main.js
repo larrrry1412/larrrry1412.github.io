@@ -110,9 +110,10 @@ async function start(mode) {
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
 		preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
-		word_pred = idx2word[tf.argmax(preds[0])]
-		start_word.push(word_pred)
+		console.log(preds)
+		word_pred = idx2word[tf.argMax(preds[0])]
 		console.log(word_pred)
+		start_word.push(word_pred)
 
 		if ((word_pred == "end" )|| (start_word.length > 34))
 		{
