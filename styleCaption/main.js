@@ -106,7 +106,6 @@ async function start(mode) {
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
 		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
-		preds=tf.tensor(preds);
 		console.log(preds);
 		preds=preds.flatten();
 		preds=preds.asType('float32');
