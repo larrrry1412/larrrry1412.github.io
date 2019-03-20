@@ -116,16 +116,16 @@ async function start(mode) {
 		console.log(word_pred)
 		start_word.push(word_pred)
 		
-		if ((word_pred.substring(0, 2)=="end" )|| (start_word.length > 34))
+		if ((word_pred.substring(0, 3)=="end" )|| (start_word.length > 34))
 		{
 			break;
 		}
 	}
 	console.log("sentence:");
 	var sen=[];
-	for (var i=0;i<start_word.length-1;i++)
+	for (var i=1;i<start_word.length-1;i++)
 		{
-			if(start_word[i].substring(0, 4)=="start"){
+			if(start_word[i].substring(0, 5)=="start"){
 				sen.push(" ");
 			}
 			else {
