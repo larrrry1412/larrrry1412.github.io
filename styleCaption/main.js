@@ -90,10 +90,11 @@ async function start(mode) {
 	console.log(s);
 	var zerok = tf.zeros([33,2048],'float32')
 	s=tf.tensor(s);
+	s=s.asType('float32');
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
 	console.log(e);
-	while (True)
+	while (true)
 	{
 		var par_caps=[];
 		for (var i=0;i<start_word.length;i++)
