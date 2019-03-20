@@ -108,16 +108,17 @@ async function start(mode) {
 			par_caps.push(0);
 		}
 
-		preds = decoder_model.predict([e,tf.tensor([[1,0]]), tf.tensor(par_caps)])
+		preds = modelstyle.predict([e,tf.tensor([[1,0]]), tf.tensor(par_caps)])
 		word_pred = idx2word[tf.argmax(preds[0])]
 		start_word.push(word_pred)
 		console.log(word_pred)
 
-		if ((word_pred == "end" )|| (len(start_word) > 34))
+		if ((word_pred == "end" )|| (start_word.length > 34))
 		{
 			break;
 		}
-	}	
+	}
+	console.log("sentence:");
 	var sen=[];
 	for (var i=1;i<start_word.length-1;i++)
 		{
