@@ -113,11 +113,13 @@ async function start(mode) {
 		preds=tf.tensor(preds);
 		preds=preds.as1D();
 		preds=preds.asType('float32');
-		var s=preds[0].toString();
+		var t=preds[0];
+		var s=t.toString();
 		s=s.substr(11);
 		s=parseInt(s);
+		t=preds[6];
 		console.log(s);
-		s=preds[6].toString();
+		s=t.toString();
 		s=s.substr(11);
 		s=parseInt(s);
 		console.log(s);
