@@ -106,20 +106,17 @@ async function start(mode) {
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
 		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
-		console.log(preds);
 		preds=preds.flatten();
-		preds=preds.asType('float32');
 		console.log(preds);
 		var d=preds.argMax();
 		var s=d.toString();
 		s=s.substr(11);
 		s=parseInt(s);
-		console.log(s);
 		word_pred = idx2word[s]
 		console.log(word_pred)
 		start_word.push(word_pred)
 		
-		if ((word_pred == 'end ' )|| (start_word.length > 34))
+		if ((word_pred.substring(0, 2)=="end" )|| (start_word.length > 34))
 		{
 			break;
 		}
@@ -128,8 +125,8 @@ async function start(mode) {
 	var sen=[];
 	for (var i=0;i<start_word.length-1;i++)
 		{
-			if(start_word[i]=='start '){
-				sen.push(' ');
+			if(start_word[i].substring(0, 4)=="start"){
+				sen.push(" ");
 			}
 			else {
 				sen.push(start_word[i]);
