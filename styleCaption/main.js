@@ -118,8 +118,8 @@ async function start(mode) {
 		word_pred = idx2word[s]
 		console.log(word_pred)
 		start_word.push(word_pred)
-
-		if ((word_pred == "end" )|| (start_word.length > 34))
+		
+		if ((word_pred == 'end ' )|| (start_word.length > 34))
 		{
 			break;
 		}
@@ -128,7 +128,12 @@ async function start(mode) {
 	var sen=[];
 	for (var i=0;i<start_word.length-1;i++)
 		{
-			sen.push(start_word[i]);
+			if(start_word[i]=='start '){
+				sen.push(' ');
+			}
+			else {
+				sen.push(start_word[i]);
+			}
 		}
 	console.log(sen);
 	document.getElementById('status').innerHTML = sen;
