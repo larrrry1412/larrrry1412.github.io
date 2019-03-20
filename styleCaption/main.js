@@ -112,9 +112,15 @@ async function start(mode) {
 		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
 		preds=tf.tensor(preds);
 		preds=preds.as1D();
-		
-		console.log(preds[0]);
-		console.log(preds[6]);
+		preds=preds.asType('float32');
+		var s=preds[0].toString();
+		s=s.substr(11);
+		s=parseInt(s);
+		console.log(s);
+		s=preds[6].toString();
+		s=s.substr(11);
+		s=parseInt(s);
+		console.log(s);
 		console.log(preds);
 		var d=preds.argMax();
 		var s=d.toString();
