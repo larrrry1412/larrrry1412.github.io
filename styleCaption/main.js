@@ -82,7 +82,6 @@ async function start(mode) {
 	const c1=batched2.div(offset);
 	const c2=c1.sub(subed);
 	const c3=c2.mul(xed);
-	console.log("hj");
 	data = c3.expandDims(0);
          
         
@@ -93,14 +92,11 @@ async function start(mode) {
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
 	var start_word=['start'];
-	console.log(idx2word[443]);
 	while (true)
 	{	
-		console.log("idx");
 		var par_caps=[];
 		for (var i=0;i<start_word.length;i++)
 		{
-			console.log(word2idx[start_word[i]]);
 			par_caps.push(word2idx[start_word[i]]);
 		}
 		for (var i=start_word.length;i<34;i++)
@@ -114,15 +110,7 @@ async function start(mode) {
 		preds=preds.as1D();
 		preds=preds.asType('float32');
 		var t=preds[0];
-		var s=t.toString();
-		s=s.substr(11);
-		s=parseInt(s);
-		t=preds[6];
-		console.log(s);
-		s=t.toString();
-		s=s.substr(11);
-		s=parseInt(s);
-		console.log(s);
+		console.log(t);
 		console.log(preds);
 		var d=preds.argMax();
 		var s=d.toString();
