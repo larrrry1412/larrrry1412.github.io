@@ -95,6 +95,7 @@ async function start(mode) {
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
 	console.log(e);
+	var start_word=['start'];
 	while (true)
 	{
 		var par_caps=[];
@@ -110,6 +111,7 @@ async function start(mode) {
 		preds = decoder_model.predict([e,tf.tensor([[1,0]]), tf.tensor(par_caps)])
 		word_pred = idx2word[tf.argmax(preds[0])]
 		start_word.push(word_pred)
+		console.log(word_pred)
 
 		if ((word_pred == "end" )|| (len(start_word) > 34))
 		{
