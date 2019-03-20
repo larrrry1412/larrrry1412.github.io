@@ -114,7 +114,7 @@ async function start(mode) {
 		preds=preds.as1D();
 		var d=preds.argMax();
 		var s=d.toInt();
-		word_pred = idx2word[s]
+		word_pred = idx2word[423]
 		console.log(word_pred)
 		start_word.push(word_pred)
 
