@@ -113,8 +113,11 @@ async function start(mode) {
 		preds=tf.tensor(preds);
 		preds=preds.as1D();
 		var d=preds.argMax();
-		var s=d.toInt();
-		word_pred = idx2word[423]
+		var s=d.toString();
+		s=s.substr(11);
+		s=parseInt(s);
+		console.log(s);
+		word_pred = idx2word[s]
 		console.log(word_pred)
 		start_word.push(word_pred)
 
