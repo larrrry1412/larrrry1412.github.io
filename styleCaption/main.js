@@ -35,15 +35,7 @@ function success(data) {
         word2idx[symbol] = i
 	idx2word[i] = symbol
     }
-	var s=word2idx['start']
-	var d=idx2word[s]
-	console.log(d)
-	s=parseInt(s)
-	console.log(s)
-	d=idx2word[s]
-	console.log(d)
-	var e=d.length()
-	console.log(e)
+	
 }
 
 
@@ -107,7 +99,11 @@ async function start(mode) {
 		var par_caps=[];
 		for (var i=0;i<start_word.length;i++)
 		{
-			par_caps.push(word2idx[start_word[i]]);
+			var str=start_word[i];
+			str=str.trim()
+			var num=word2idx[str];
+			num=parseInt(num)
+			par_caps.push(num);
 		}
 		for (var i=start_word.length;i<34;i++)
 		{
