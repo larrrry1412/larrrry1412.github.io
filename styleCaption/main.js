@@ -87,20 +87,20 @@ async function start(mode) {
          
         
 	var s=modelIncep.predict(data);
-	console.log(s);
 	var zerok = tf.zeros([33,2048],'float32')
 	s=s.as2D(1,2048);
 	s=s.asType('float32');
-	console.log(s);
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
-	console.log(e);
 	var start_word=['start'];
+	console.log(idx2word[443]);
 	while (true)
-	{
+	{	
+		console.log("idx");
 		var par_caps=[];
 		for (var i=0;i<start_word.length;i++)
 		{
+			console.log(word2idx[i]);
 			par_caps.push(word2idx[i]);
 		}
 		for (var i=start_word.length;i<34;i++)
@@ -123,7 +123,7 @@ async function start(mode) {
 	}
 	console.log("sentence:");
 	var sen=[];
-	for (var i=1;i<start_word.length-1;i++)
+	for (var i=0;i<start_word.length-1;i++)
 		{
 			sen.push(start_word[i]);
 		}
