@@ -109,9 +109,10 @@ async function start(mode) {
 		}
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
-		preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
-		console.log(preds)
-		word_pred = idx2word[tf.argMax(preds[0])]
+		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
+		preds=tf.tensor(preds);
+		preds=preds.as1D();
+		word_pred = idx2word[tf.argMax(preds)]
 		console.log(word_pred)
 		start_word.push(word_pred)
 
