@@ -7,7 +7,7 @@ var a=[];
 var idx2word=[];
 var word2idx = new Array();
 var data;
-
+var flag=1;
 
 /*
 load the wordsdict
@@ -64,6 +64,10 @@ async function start(mode) {
 
     //加载入canvas
     function createURLImg(file,callback) {
+	if(flag==1){
+		flag=0;
+		return;
+	}
         var pen=myCanvas.getContext("2d");
         var imgUrl=URL.createObjectURL(file);
         var image=new Image();
@@ -132,14 +136,14 @@ async function start(mode) {
 	for (var i=1;i<start_word.length-1;i++)
 		{
 			if(start_word[i].substring(0, 5)=="start"){
-				sen.push(" ");
 			}
 			else {
 				sen.push(start_word[i]);
 			}
 		}
-	console.log(sen);
-	document.getElementById('status').innerHTML = sen;
+	var str=sen.join("");
+	console.log(str);
+	document.getElementById('status').innerHTML = str;
 
     }
     //提交按钮
