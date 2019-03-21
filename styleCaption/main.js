@@ -81,7 +81,7 @@ async function start(mode) {
     }
     //提交按钮
     function test() {
-        	const batched2=tensor.asType('float32');
+        const batched2=tensor.asType('float32');
 	const subed=tf.scalar(0.5);
 	const xed=tf.scalar(2.0);
 	const offset = tf.scalar(255.0);	
@@ -97,7 +97,54 @@ async function start(mode) {
 	s=s.asType('float32');
         var e = tf.concat([s, zerok]);
 	e = e.expandDims(0);
+	    //romantic caption
 	var start_word=['start'];
+	while (true)
+	{	
+		var par_caps=[];
+		for (var i=0;i<start_word.length;i++)
+		{
+			var str=start_word[i];
+			str=str.trim()
+			var num=word2idx[str];
+			num=parseInt(num)
+			par_caps.push(num);
+		}
+		for (var i=start_word.length;i<34;i++)
+		{
+			par_caps.push(0);
+		}
+		par_caps=tf.tensor(par_caps);
+		par_caps=par_caps.as2D(1,34);
+		var preds = modelstyle.predict([e,tf.tensor([[0,1]]),par_caps])
+		preds=preds.flatten();
+		var d=preds.argMax();
+		var s=d.toString();
+		s=s.substr(11);
+		s=parseInt(s);
+		word_pred = idx2word[s]
+		start_word.push(word_pred)
+		
+		if ((word_pred.substring(0, 3)=="end" )|| (start_word.length > 34))
+		{
+			break;
+		}
+	}
+	console.log("romantic sentence:");
+	var sen=[];
+	for (var i=1;i<start_word.length-1;i++)
+		{
+			if(start_word[i].substring(0, 5)=="start"){
+			}
+			else {
+				sen.push(start_word[i]);
+			}
+		}
+	var str=sen.join("");
+	console.log(str);
+	document.getElementById('status').innerHTML = str;
+	//funny caption
+	start_word=['start'];
 	while (true)
 	{	
 		var par_caps=[];
@@ -117,13 +164,11 @@ async function start(mode) {
 		par_caps=par_caps.as2D(1,34);
 		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
 		preds=preds.flatten();
-		console.log(preds);
 		var d=preds.argMax();
 		var s=d.toString();
 		s=s.substr(11);
 		s=parseInt(s);
 		word_pred = idx2word[s]
-		console.log(word_pred)
 		start_word.push(word_pred)
 		
 		if ((word_pred.substring(0, 3)=="end" )|| (start_word.length > 34))
@@ -131,7 +176,7 @@ async function start(mode) {
 			break;
 		}
 	}
-	console.log("sentence:");
+	console.log("funny sentence:");
 	var sen=[];
 	for (var i=1;i<start_word.length-1;i++)
 		{
@@ -143,7 +188,53 @@ async function start(mode) {
 		}
 	var str=sen.join("");
 	console.log(str);
-	document.getElementById('status').innerHTML = str;
+	document.getElementById('status2').innerHTML = str;
+	//factual caption
+	start_word=['start'];
+	while (true)
+	{	
+		var par_caps=[];
+		for (var i=0;i<start_word.length;i++)
+		{
+			var str=start_word[i];
+			str=str.trim()
+			var num=word2idx[str];
+			num=parseInt(num)
+			par_caps.push(num);
+		}
+		for (var i=start_word.length;i<34;i++)
+		{
+			par_caps.push(0);
+		}
+		par_caps=tf.tensor(par_caps);
+		par_caps=par_caps.as2D(1,34);
+		var preds = modelstyle.predict([e,tf.tensor([[0,0]]),par_caps])
+		preds=preds.flatten();
+		var d=preds.argMax();
+		var s=d.toString();
+		s=s.substr(11);
+		s=parseInt(s);
+		word_pred = idx2word[s]
+		start_word.push(word_pred)
+		
+		if ((word_pred.substring(0, 3)=="end" )|| (start_word.length > 34))
+		{
+			break;
+		}
+	}
+	console.log("factual sentence:");
+	var sen=[];
+	for (var i=1;i<start_word.length-1;i++)
+		{
+			if(start_word[i].substring(0, 5)=="start"){
+			}
+			else {
+				sen.push(start_word[i]);
+			}
+		}
+	var str=sen.join("");
+	console.log(str);
+	document.getElementById('status3').innerHTML = str;
     }
     
     function biafenb(r) {
