@@ -72,10 +72,11 @@ async function start(mode) {
             pen.drawImage(image,0,0,299,299);
             if(callback) callback();
             URL.revokeObjectURL(imgUrl);
+	    //tensorflow 预处理部分 
+	    tensor = tf.fromPixels(myCanvas);
         }
 
-        //tensorflow 预处理部分 
-        tensor = tf.fromPixels(myCanvas);
+        
 		
 
     }
