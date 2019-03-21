@@ -143,7 +143,7 @@ async function start(mode) {
 		}
 	var str=sen.join("");
 	console.log(str);
-	document.getElementById('status').innerHTML = str;
+	document.getElementById('status1').innerHTML = str;
 	//funny caption
 	start_word=['start'];
 	while (true)
