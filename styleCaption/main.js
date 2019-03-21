@@ -8,7 +8,7 @@ var idx2word=[];
 var word2idx = new Array();
 var data;
 var flag=1;
-
+var tensor;
 /*
 load the wordsdict
 */
@@ -64,10 +64,6 @@ async function start(mode) {
 
     //加载入canvas
     function createURLImg(file,callback) {
-	if(flag==1){
-		flag=0;
-		return;
-	}
         var pen=myCanvas.getContext("2d");
         var imgUrl=URL.createObjectURL(file);
         var image=new Image();
@@ -79,9 +75,13 @@ async function start(mode) {
         }
 
         //tensorflow 预处理部分 
-        var tensor = tf.fromPixels(myCanvas);
+        tensor = tf.fromPixels(myCanvas);
 		
-	const batched2=tensor.asType('float32');
+
+    }
+    //提交按钮
+    function test() {
+        	const batched2=tensor.asType('float32');
 	const subed=tf.scalar(0.5);
 	const xed=tf.scalar(2.0);
 	const offset = tf.scalar(255.0);	
@@ -144,15 +144,6 @@ async function start(mode) {
 	var str=sen.join("");
 	console.log(str);
 	document.getElementById('status').innerHTML = str;
-
-    }
-    //提交按钮
-    function test() {
-        myCanvas.toBlob(function (result) {
-            var form=new FormData();
-            form.append("xxx",result);
-            ajax(form);
-        })
     }
     
     function biafenb(r) {
