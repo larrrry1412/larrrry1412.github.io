@@ -1,52 +1,239 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>Recognition</title>
-<!-- bs4 css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
-<!-- jQuery library -->
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<!-- Popper JS -->
-<script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- TensorFlow.js script -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
-<!-- canvas script -->
-<script src="fabric.js"></script>
-<!-- main script -->
-<script src="main.js"></script>
-<link rel="icon" href="data:;base64,=">
-<!-- main css -->
-<link rel = "stylesheet" href="main.css" > 
-	
-	
-</head>
-<!-- <body background="2d154c540923dd54ae802130dc09b3de9d8248fa.jpg" style="background-repeat:no-repeat"></body>  -->
-<body>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>StyleImage Caption | NJUST</title>
+	<!-- bs4 css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+	<!-- jQuery library -->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- TensorFlow.js script -->
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
+	<!-- canvas script -->
+	<script src="fabric.js"></script>
+	<!-- main script -->
+	<script src="main.js"></script>
+	<link rel="icon" href="data:;base64,=">
+	<!-- main css -->
+	<link rel = "stylesheet" href="main.css" > 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- Font awesome -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">   
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">    
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">   
+     <!-- Gallery Lightbox -->
+    <link href="assets/css/magnific-popup.css" rel="stylesheet"> 
+    <!-- Theme color -->
+    <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">     
+
+    <!-- Main style sheet -->
+    <link href="style.css" rel="stylesheet">    
+
+   
+    <!-- Google Fonts -->
+
+    <!-- Prata for body  -->
+    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+    <!-- Tangerine for small title -->
+    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>   
+    <!-- Open Sans for title -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <script src="main.js"></script> 
 
 
+  </head>
+  <body>
 
-<div class="row">
-  <div class="col" style ='margin-left:100px'>
-	  <h5>Romantic:</h5><h4 id ='status' >请等待模型加载.</h4>	
-	  <h5>Funny:</h5><h4 id ='status2' ></h4>	
-	  <h5>Factual:</h5><h4 id ='status3' ></h4>	
-      <input type="file" id="myfile" onchange="changeFile()" />
-      <canvas id="myCanvas" width="299" height="299" style="border:1px solid #d3d3d3;"></canvas>
-      <button onclick="test()">提交</button>
+  <!--START SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#">
+      <i class="fa fa-angle-up"></i>
+    </a>
+  <!-- END SCROLL TOP BUTTON -->
 
-  </div>
-</div>  
-</body>
+  <!-- Start header section -->
+  <header id="mu-header">  
+    <nav class="navbar navbar-default mu-main-navbar" role="navigation">  
+      <div class="container">
+        <div class="navbar-header">
+          <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
 
+          <!-- LOGO -->       
 
-<script>
-    
-</script>
-<script>
-  console.log('starting');
-  start('en')
-</script>
-    
+           <!--  Text based logo  -->
+          <a class="navbar-brand" href="index.html">StyleImage<span>Caption</span></a> 
+
+		      <!--  Image based logo  -->
+          <!-- <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo img"></a>  -->
+         
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="#mu-slider">THE WORK</a></li>                       
+            <li><a href="#mu-restaurant-menu">RECOMMAND</a></li>                       
+            <li><a href="#mu-chef">OUR TEAM</a></li> 
+            <li><a href="#mu-contact">CONTACT</a></li> 
+          </ul>                            
+        </div><!--/.nav-collapse -->       
+      </div>          
+    </nav> 
+  </header>
+  <!-- End header section -->
+ 
+
+  <!-- Start slider  -->
+  <section id="mu-slider">
+    <div class="mu-slider-area"> 
+
+      <!-- Top slider -->
+      <div class="mu-top-slider">
+
+        <!-- Top slider single slide -->
+        <div class="mu-top-slider-single">
+          <img src="assets/img/slider/1.jpg" alt="img">
+          <!-- Top slider content -->
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">Welcome</span>
+            <h2 class="mu-slider-title">To The Caption</h2>
+            <p>Let's upload an image and look what's it all about.</p>           
+            <a href="#mu-reservation" class="mu-readmore-btn mu-reservation-btn">Have A Try</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide -->    
+
+         <!-- Top slider single slide -->
+        <div class="mu-top-slider-single">
+          <img src="assets/img/slider/2.jpg" alt="img">
+          <!-- Top slider content -->
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">The Elegant</span>
+            <h2 class="mu-slider-title">Italian Restaurant</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
+           <a href="#mu-reservation" class="mu-readmore-btn mu-reservation-btn">BOOK A TABLE</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide --> 
+
+        <!-- Top slider single slide -->
+        <div class="mu-top-slider-single">
+          <img src="assets/img/slider/3.jpg" alt="img">
+          <!-- Top slider content -->
+          <div class="mu-top-slider-content">
+            <span class="mu-slider-small-title">Delicious</span>
+            <h2 class="mu-slider-title">Spicy Masalas</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
+            <a href="#mu-reservation" class="mu-readmore-btn mu-reservation-btn">BOOK A TABLE</a>
+          </div>
+          <!-- / Top slider content -->
+        </div>
+        <!-- / Top slider single slide -->   
+
+      </div>
+    </div>
+  </section>
+  <!-- End slider  -->
+
+  <!-- Start About us -->
+  <section id="mu-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mu-about-us-area">
+
+            <div class="mu-title">
+              <span class="mu-subtitle">Discover</span>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+               <div class="mu-about-us-left">     
+					<h4 id ='status' >请等待模型加载.</h4>	
+				  <input type="file" id="myfile" onchange="changeFile()" />
+				  <canvas id="myCanvas" width="299" height="299" style="border:1px solid #d3d3d3;"></canvas>
+				  <button onclick="test()">提交</button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="mu-about-us-right">                        
+                  <ul>
+                  	</br>
+                    </br>
+                    <h3>Romantic:</h5><h4 id ='status1' ></h4>	
+				  <h3>Funny:</h5><h4 id ='status2' ></h4>	
+				  <h3>Factual:</h5><h4 id ='status3' ></h4>	                  
+                  </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End About us -->
+
+  <!-- Start Footer -->
+  <footer id="mu-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="mu-footer-area">
+           <div class="mu-footer-social">
+            <a href="#"><span class="fa fa-facebook"></span></a>
+            <a href="#"><span class="fa fa-twitter"></span></a>
+            <a href="#"><span class="fa fa-google-plus"></span></a>
+            <a href="#"><span class="fa fa-linkedin"></span></a>
+            <a href="#"><span class="fa fa-youtube"></span></a>
+          </div>
+          <div class="mu-footer-copyright">
+            <p>&copy; Copyright markups.io. All right reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+          </div>         
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  
+  <!-- jQuery library -->
+  <script src="assets/js/jquery.min.js"></script>  
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="assets/js/bootstrap.js"></script>   
+  <!-- Slick slider -->
+  <script type="text/javascript" src="assets/js/slick.js"></script>
+  <!-- Counter -->
+  <script type="text/javascript" src="assets/js/simple-animated-counter.js"></script>
+  <!-- Gallery Lightbox -->
+  <script type="text/javascript" src="assets/js/jquery.magnific-popup.min.js"></script>
+  <!-- Date Picker -->
+  <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script> 
+  <!-- Ajax contact form  -->
+  <script type="text/javascript" src="assets/js/app.js"></script>
+ 
+  <!-- Custom js -->
+  <script src="assets/js/custom.js"></script> 
+
+  </body>
 </html>
