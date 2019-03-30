@@ -49,9 +49,9 @@ async function start(mode) {
     document.getElementById('status').innerHTML = 'Inception load OK';
     //load the wordsdict
     await loadDict()
-    document.getElementById('status').innerHTML = 'dict OK';
+    document.getElementById('status').innerHTML = 'dict load OK';
     modelstyle = await tf.loadModel('modelstylednew/model.json')
-    document.getElementById('status').innerHTML ='style OK';
+    document.getElementById('status').innerHTML ='style load OK';
     
     
 }
@@ -117,7 +117,7 @@ async function start(mode) {
 		}
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
-		var preds = modelstyle.predict([e,tf.tensor([[0,1]]),par_caps])
+		var preds = modelstyle.predict([e,tf.tensor([[[0,1]]]),par_caps])
 		preds=preds.flatten();
 		var d=preds.argMax();
 		var s=d.toString();
@@ -163,7 +163,7 @@ async function start(mode) {
 		}
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
-		var preds = modelstyle.predict([e,tf.tensor([[1,0]]),par_caps])
+		var preds = modelstyle.predict([e,tf.tensor([[[1,0]]]),par_caps])
 		preds=preds.flatten();
 		var d=preds.argMax();
 		var s=d.toString();
@@ -209,7 +209,7 @@ async function start(mode) {
 		}
 		par_caps=tf.tensor(par_caps);
 		par_caps=par_caps.as2D(1,34);
-		var preds = modelstyle.predict([e,tf.tensor([[0,0]]),par_caps])
+		var preds = modelstyle.predict([e,tf.tensor([[[0,0]]]),par_caps])
 		preds=preds.flatten();
 		var d=preds.argMax();
 		var s=d.toString();
