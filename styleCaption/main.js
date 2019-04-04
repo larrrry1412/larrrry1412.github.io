@@ -52,8 +52,6 @@ async function start(mode) {
     document.getElementById('status').innerHTML = 'dict loaded OK';
     modelstyle = await tf.loadModel('modelstylednew/model.json')
     document.getElementById('status').innerHTML ='style load OK';
-    utterThis = new window.SpeechSynthesisUtterance("见你所见，想你所想");
-    window.speechSynthesis.speak(utterThis);
     
 }
 
@@ -61,6 +59,9 @@ async function start(mode) {
 //选择图片后
     function changeFile() {
         createURLImg(myfile.files[0]);
+	
+	utterThis = new window.SpeechSynthesisUtterance("见你所见，想你所想");
+	window.speechSynthesis.speak(utterThis);
     }
 
     //加载入canvas
