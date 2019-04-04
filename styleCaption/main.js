@@ -52,7 +52,8 @@ async function start(mode) {
     document.getElementById('status').innerHTML = 'dict loaded OK';
     modelstyle = await tf.loadModel('modelstylednew/model.json')
     document.getElementById('status').innerHTML ='style load OK';
-    
+    utterThis = new window.SpeechSynthesisUtterance("想你所想，见你所见");
+    window.speechSynthesis.speak(utterThis);
     
 }
 
@@ -148,6 +149,8 @@ async function start(mode) {
 		}
 	var str=sen.join("");
 	console.log(str);
+	var utterThis = new window.SpeechSynthesisUtterance("浪漫"+str);
+	window.speechSynthesis.speak(utterThis);
 	document.getElementById('status1').innerHTML = str;
 	//funny caption
 	start_word=['start'];
@@ -200,6 +203,8 @@ async function start(mode) {
 	var str=sen.join("");
 	console.log(str);
 	document.getElementById('status2').innerHTML = str;
+	utterThis = new window.SpeechSynthesisUtterance("幽默"+str);
+	window.speechSynthesis.speak(utterThis);
 	//factual caption
 	start_word=['start'];
 	while (true)
@@ -251,6 +256,8 @@ async function start(mode) {
 	var str=sen.join("");
 	console.log(str);
 	document.getElementById('status3').innerHTML = str;
+	utterThis = new window.SpeechSynthesisUtterance("简洁"+str);
+	window.speechSynthesis.speak(utterThis);
     }
     
     function biafenb(r) {
