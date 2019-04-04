@@ -52,7 +52,7 @@ async function start(mode) {
     document.getElementById('status').innerHTML = 'dict loaded OK';
     modelstyle = await tf.loadModel('modelstylednew/model.json')
     document.getElementById('status').innerHTML ='style load OK';
-    utterThis = new window.SpeechSynthesisUtterance("想你所想，见你所见");
+    utterThis = new window.SpeechSynthesisUtterance("见你所见，想你所想");
     window.speechSynthesis.speak(utterThis);
     
 }
