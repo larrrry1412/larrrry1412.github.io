@@ -1,5 +1,5 @@
 # larrrry1412.github.io
-Larry's HomePage   <a href='https://github.com/larrrry1412/larrrry1412.github.io'>code</a>
+Shuichang Lai<a href='https://larrrry1412.github.io/'>HomePage</a>
 <br>
 <h1>Test model</h1>
 <h2>Come and have a try!</h2>
